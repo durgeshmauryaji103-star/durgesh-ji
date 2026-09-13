@@ -1,0 +1,2968 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Mathematical Foundations for Computing - Durgesh</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    background:
+      radial-gradient(circle at 20% 10%,#173f59 0%,transparent 35%),
+      radial-gradient(circle at 80% 20%,#23365e 0%,transparent 30%),
+      linear-gradient(135deg,#02070d,#071522,#02070d);
+    color:#eef8ff;
+    line-height:1.7;
+    padding-bottom:60px;
+}
+
+.container{
+    width:92%;
+    max-width:1250px;
+    margin:auto;
+}
+
+/* ================= HEADER ================= */
+
+header{
+    text-align:center;
+    padding:55px 10px 35px;
+    perspective:1000px;
+}
+
+.durgesh{
+    font-size:27px;
+    font-weight:bold;
+    letter-spacing:5px;
+    color:white;
+    text-shadow:
+      2px 2px 0 #314e60,
+      4px 4px 0 #17303f,
+      8px 10px 18px #000;
+}
+
+.title3d{
+    font-size:55px;
+    font-weight:900;
+    letter-spacing:5px;
+    color:#61dcff;
+    margin-top:5px;
+    transform:rotateX(8deg);
+    text-shadow:
+      2px 2px 0 #14536b,
+      4px 4px 0 #0b3b4d,
+      7px 7px 0 #062733,
+      12px 14px 25px #000;
+}
+
+.subtitle{
+    color:#a9c5d3;
+    margin-top:10px;
+    font-size:17px;
+}
+
+/* ================= NAV ================= */
+
+nav{
+    position:sticky;
+    top:10px;
+    z-index:100;
+    text-align:center;
+    padding:12px;
+    margin-bottom:35px;
+
+    background:rgba(3,12,20,.95);
+    border:1px solid #2d6379;
+    border-radius:15px;
+
+    box-shadow:
+      0 8px 0 #02070b,
+      0 15px 35px #000b;
+}
+
+nav a{
+    display:inline-block;
+    text-decoration:none;
+    color:#dff8ff;
+    background:#0c2635;
+    border:1px solid #24546a;
+    padding:7px 13px;
+    margin:3px;
+    border-radius:9px;
+    transition:.3s;
+}
+
+nav a:hover{
+    background:#145a73;
+    transform:translateY(-3px);
+}
+
+/* ================= UNIT ================= */
+
+.unit{
+    margin:55px 0;
+    scroll-margin-top:90px;
+}
+
+.unit-title{
+    font-size:30px;
+    padding:18px 22px;
+    margin-bottom:25px;
+
+    background:linear-gradient(145deg,#1b506a,#08212f);
+    border:1px solid #42829b;
+    border-radius:17px;
+
+    box-shadow:
+      0 7px 0 #03131d,
+      0 17px 35px #000a;
+
+    text-shadow:
+      2px 2px 0 #052532,
+      5px 6px 12px #000;
+}
+
+/* ================= TOPIC ================= */
+
+.topic{
+    margin:22px 0;
+    padding:26px;
+
+    background:
+      linear-gradient(145deg,
+      rgba(18,45,61,.98),
+      rgba(5,18,27,.98));
+
+    border:1px solid #315b6d;
+    border-radius:18px;
+
+    box-shadow:
+      0 8px 0 #020b11,
+      0 18px 35px #0009;
+
+    transition:.3s;
+}
+
+.topic:hover{
+    transform:translateY(-4px);
+    box-shadow:
+      0 12px 0 #020b11,
+      0 24px 40px #000b;
+}
+
+.topic h3{
+    color:#63ddff;
+    font-size:24px;
+    margin-bottom:14px;
+}
+
+.topic h4{
+    color:#ffdf7e;
+    margin-top:20px;
+    margin-bottom:9px;
+}
+
+.definition{
+    background:#06141e;
+    border-left:5px solid #60dfff;
+    padding:14px 17px;
+    border-radius:9px;
+    margin:14px 0;
+}
+
+.how{
+    background:#102b3c;
+    border-left:5px solid #ffd166;
+    padding:14px 17px;
+    border-radius:9px;
+    margin:14px 0;
+}
+
+.formula{
+    background:#02080d;
+    border:1px solid #234857;
+    border-radius:10px;
+    padding:15px;
+    margin:14px 0;
+
+    font-family:Consolas,monospace;
+    color:#9cecff;
+
+    overflow-x:auto;
+}
+
+.example{
+    background:linear-gradient(145deg,#12374c,#071923);
+    border:1px solid #2d6073;
+    border-radius:12px;
+    padding:16px 18px;
+    margin:14px 0;
+
+    box-shadow:
+      4px 5px 0 #020b11,
+      0 10px 20px #0006;
+}
+
+.example b{
+    color:#ffe082;
+}
+
+.step{
+    margin:6px 0;
+    padding-left:12px;
+}
+
+.result{
+    background:#092d3b;
+    color:#8feaff;
+    border-left:4px solid #60ddff;
+    padding:8px 12px;
+    margin-top:10px;
+    border-radius:7px;
+    font-weight:bold;
+}
+
+.note{
+    color:#b9d2dd;
+    font-size:14px;
+}
+
+/* ================= TABLE ================= */
+
+.table-wrap{
+    overflow-x:auto;
+    margin:15px 0;
+}
+
+table{
+    width:100%;
+    border-collapse:collapse;
+    min-width:520px;
+    background:#041019;
+}
+
+th,td{
+    border:1px solid #315465;
+    padding:10px;
+    text-align:center;
+}
+
+th{
+    background:#174e66;
+    color:white;
+}
+
+td{
+    color:#dcecf3;
+}
+
+/* ================= DIAGRAM ================= */
+
+.diagram{
+    text-align:center;
+    padding:22px;
+    margin:18px 0;
+
+    background:#02090f;
+    border:1px solid #2b5061;
+    border-radius:12px;
+    overflow-x:auto;
+}
+
+.box{
+    display:inline-block;
+    padding:13px 20px;
+    margin:5px;
+
+    background:linear-gradient(145deg,#21677f,#092d3c);
+    border:1px solid #5bbbd8;
+    border-radius:10px;
+
+    box-shadow:
+      5px 6px 0 #03131b,
+      0 10px 20px #0008;
+}
+
+.arrow{
+    color:#66e0ff;
+    font-size:25px;
+}
+
+/* ================= CODE-LIKE FORM ================= */
+
+.math-box{
+    background:#03090e;
+    border:1px solid #274957;
+    border-radius:10px;
+    padding:15px;
+    font-family:Consolas,monospace;
+    overflow-x:auto;
+}
+
+/* ================= REVISION ================= */
+
+.revision{
+    padding:25px;
+
+    background:linear-gradient(145deg,#163b4e,#06131c);
+    border:1px solid #3c788e;
+    border-radius:17px;
+
+    box-shadow:
+      0 8px 0 #020b11,
+      0 18px 30px #0009;
+}
+
+.revision li{
+    margin:8px 0 8px 25px;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    text-align:center;
+    margin-top:60px;
+    padding:30px;
+    border-top:1px solid #294858;
+    color:#91aab7;
+}
+
+@media(max-width:700px){
+
+    .title3d{
+        font-size:35px;
+        letter-spacing:3px;
+    }
+
+    .durgesh{
+        font-size:19px;
+        letter-spacing:2px;
+    }
+
+    .unit-title{
+        font-size:23px;
+    }
+
+    .topic h3{
+        font-size:21px;
+    }
+
+    nav a{
+        font-size:12px;
+        padding:6px 8px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+    <div class="durgesh">▀▄▀▄ Durgesh ▄▀▄▀</div>
+    <div class="title3d">MATHEMATICS</div>
+    <div class="subtitle">
+        Mathematical Foundations for Computing, AI & Data Science
+    </div>
+</header>
+
+<nav>
+    <a href="#unit1">UNIT 1</a>
+    <a href="#unit2">UNIT 2</a>
+    <a href="#unit3">UNIT 3</a>
+    <a href="#unit4">UNIT 4</a>
+    <a href="#unit5">UNIT 5</a>
+</nav>
+
+
+<!-- =====================================================
+                     UNIT 1
+===================================================== -->
+
+<section class="unit" id="unit1">
+
+<h2 class="unit-title">
+UNIT 1 — Mathematical Foundations for Computing
+</h2>
+
+
+<!-- SETS -->
+
+<div class="topic">
+
+<h3>1. Sets and Set Operations</h3>
+
+<div class="definition">
+<b>Set</b> ka matlab hai well-defined objects ka collection.
+Set ko generally curly brackets { } ke andar likhte hain.
+</div>
+
+<div class="example">
+<b>Example 1: Set banana</b>
+
+<div class="formula">
+A = {1, 2, 3, 4, 5}
+</div>
+
+Yahan A ek set hai aur 1,2,3,4,5 uske elements hain.
+</div>
+
+<h4>Union</h4>
+
+<div class="how">
+Union ka matlab dono sets ke saare different elements ko combine karna.
+Symbol: A ∪ B
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+<div class="formula">
+A = {1,2,3}
+B = {3,4,5}
+
+A ∪ B
+= {1,2,3,4,5}
+</div>
+
+<b>3 repeat kyon nahi hua?</b><br>
+Kyuki set me duplicate element normally ek hi baar likha jata hai.
+</div>
+
+<h4>Intersection</h4>
+
+<div class="how">
+Intersection me sirf common elements aate hain.
+Symbol: A ∩ B
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+<div class="formula">
+A = {1,2,3}
+B = {2,3,4}
+
+A ∩ B
+= {2,3}
+</div>
+
+2 aur 3 dono sets me common hain.
+</div>
+
+<h4>Difference</h4>
+
+<div class="example">
+<b>Example 4:</b>
+
+<div class="formula">
+A = {1,2,3}
+B = {2,3,4}
+
+A - B
+= {1}
+</div>
+
+A me jo hai lekin B me nahi hai → 1.
+</div>
+
+</div>
+
+
+<!-- FUNCTIONS -->
+
+<div class="topic">
+
+<h3>2. Functions and Graphs</h3>
+
+<div class="definition">
+Function ek rule hai jo har input ko exactly ek output se map karta hai.
+Isse likh sakte hain:
+<b>f(x) = ...</b>
+</div>
+
+<div class="how">
+Agar:
+<br>
+f(x) = 2x + 1
+<br>
+to x ki value put karke output nikala ja sakta hai.
+</div>
+
+<div class="example">
+<b>Example 1:</b> f(x)=2x+1, x=3
+
+<div class="formula">
+f(3)=2(3)+1
+=6+1
+=7
+</div>
+
+<div class="result">
+Output = 7
+</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b> f(x)=x², x=4
+
+<div class="formula">
+f(4)=4²
+=16
+</div>
+
+<div class="result">Output = 16</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b> f(x)=3x−2, x=5
+
+<div class="formula">
+f(5)=3(5)-2
+=15-2
+=13
+</div>
+
+<div class="result">Output = 13</div>
+</div>
+
+<div class="example">
+<b>Example 4:</b> Graph ka basic meaning
+
+<div class="formula">
+y = x
+</div>
+
+Agar x=1 → y=1<br>
+x=2 → y=2<br>
+x=3 → y=3
+
+Points:
+(1,1), (2,2), (3,3)
+
+In points ko graph par plot karne se straight line milti hai.
+</div>
+
+</div>
+
+
+<!-- MODELLING -->
+
+<div class="topic">
+
+<h3>3. Mathematical Modelling</h3>
+
+<div class="definition">
+Real-world problem ko mathematical equation/model me convert karna
+<b>mathematical modelling</b> kehlata hai.
+</div>
+
+<div class="how">
+Process:
+<br>
+Real problem → Variables identify → Equation banao → Calculate → Result interpret karo
+</div>
+
+<div class="example">
+<b>Example 1: Total Cost</b>
+
+Ek pen ₹10 ka hai aur x pens kharide.
+
+<div class="formula">
+Cost = 10x
+</div>
+
+Agar x=5:
+
+<div class="formula">
+Cost = 10×5 = ₹50
+</div>
+
+<div class="result">5 pens ki cost = ₹50</div>
+</div>
+
+<div class="example">
+<b>Example 2: Speed</b>
+
+Distance = 120 km<br>
+Time = 3 hours
+
+<div class="formula">
+Speed = Distance / Time
+= 120/3
+= 40 km/h
+</div>
+</div>
+
+<div class="example">
+<b>Example 3: Monthly saving</b>
+
+Income = ₹20,000<br>
+Expense = ₹15,000
+
+<div class="formula">
+Saving = Income - Expense
+= 20000 - 15000
+= ₹5000
+</div>
+</div>
+
+<div class="example">
+<b>Example 4: Computing model</b>
+
+Agar server par har request process karne me 2 ms lagta hai,
+to n requests ke liye approximate processing time:
+
+<div class="formula">
+T = 2n ms
+</div>
+
+n=100:
+
+<div class="result">
+T=2×100=200 ms
+</div>
+</div>
+
+</div>
+
+
+<!-- SEQUENCES -->
+
+<div class="topic">
+
+<h3>4. Sequences and Series</h3>
+
+<div class="definition">
+<b>Sequence:</b> Numbers ka ordered arrangement.
+<br>
+<b>Series:</b> Sequence ke terms ka sum.
+</div>
+
+<h4>Arithmetic Sequence</h4>
+
+<div class="formula">
+a, a+d, a+2d, a+3d,...
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+2, 5, 8, 11,...
+
+Yahan:
+
+<div class="formula">
+a=2
+d=5-2=3
+</div>
+
+Next term:
+
+<div class="formula">
+11+3=14
+</div>
+
+<div class="result">Next term = 14</div>
+</div>
+
+<div class="example">
+<b>Example 2: nth term</b>
+
+Formula:
+
+<div class="formula">
+aₙ = a + (n-1)d
+</div>
+
+Sequence: 3,6,9,12,...
+
+Find 5th term:
+
+<div class="formula">
+a=3
+d=3
+n=5
+
+a₅ = 3+(5-1)3
+=3+12
+=15
+</div>
+
+<div class="result">5th term = 15</div>
+</div>
+
+<h4>Geometric Sequence</h4>
+
+<div class="example">
+<b>Example 3:</b>
+
+2, 4, 8, 16,...
+
+Har term previous term ×2 hai.
+
+<div class="formula">
+Common ratio r=2
+</div>
+
+Next:
+
+16×2=32
+
+<div class="result">Next term = 32</div>
+</div>
+
+<div class="example">
+<b>Example 4: Series Sum</b>
+
+1+2+3+4+5
+
+<div class="formula">
+Sum = 1+2+3+4+5
+=15
+</div>
+
+<div class="result">Answer = 15</div>
+</div>
+
+</div>
+
+
+<!-- APPLICATIONS -->
+
+<div class="topic">
+
+<h3>5. Applications in Computing</h3>
+
+<div class="definition">
+Sets, functions aur sequences ka use databases, algorithms, programming, searching,
+data structures aur computer models me hota hai.
+</div>
+
+<div class="example">
+<b>Example 1:</b> Database me users ka collection ek set ki tarah treat kiya ja sakta hai.
+</div>
+
+<div class="example">
+<b>Example 2:</b> Programming function input lekar output return karta hai.
+
+<div class="formula">
+input → function → output
+</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b> Algorithm ki running time ko mathematical function se represent kar sakte hain.
+
+<div class="formula">
+T(n)=2n+5
+</div>
+</div>
+
+<div class="example">
+<b>Example 4:</b> Recursive algorithms me sequences/recurrence relations ka concept use hota hai.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                     UNIT 2
+===================================================== -->
+
+<section class="unit" id="unit2">
+
+<h2 class="unit-title">
+UNIT 2 — Linear Algebra
+</h2>
+
+
+<!-- MATRICES -->
+
+<div class="topic">
+
+<h3>1. Matrices and Matrix Operations</h3>
+
+<div class="definition">
+Matrix numbers ko rows aur columns ke rectangular arrangement me store karta hai.
+</div>
+
+<div class="formula">
+A =
+[ 1  2
+  3  4 ]
+</div>
+
+Is matrix me 2 rows aur 2 columns hain.
+Isliye order = 2×2.
+</div>
+
+<div class="example">
+<b>Example 1: Matrix Addition</b>
+
+<div class="formula">
+A = [1  2]
+    [3  4]
+
+B = [5  6]
+    [7  8]
+</div>
+
+Corresponding elements add:
+
+<div class="formula">
+A+B =
+[1+5   2+6]
+[3+7   4+8]
+
+=
+[6  8]
+[10 12]
+</div>
+
+<div class="result">Answer obtained by adding same positions.</div>
+</div>
+
+<div class="example">
+<b>Example 2: Scalar Multiplication</b>
+
+<div class="formula">
+2A =
+2[1 2
+  3 4]
+
+=
+[2 4
+  6 8]
+</div>
+</div>
+
+<div class="example">
+<b>Example 3: Matrix Multiplication</b>
+
+<div class="formula">
+A = [1 2]
+    [3 4]
+
+B = [5 6]
+    [7 8]
+</div>
+
+First element:
+
+<div class="formula">
+C₁₁ = (1×5)+(2×7)
+=5+14
+=19
+</div>
+
+Second:
+
+<div class="formula">
+C₁₂=(1×6)+(2×8)
+=6+16
+=22
+</div>
+
+Third:
+
+<div class="formula">
+C₂₁=(3×5)+(4×7)
+=15+28
+=43
+</div>
+
+Fourth:
+
+<div class="formula">
+C₂₂=(3×6)+(4×8)
+=18+32
+=50
+</div>
+
+<div class="result">
+AB = [19 22
+      43 50]
+</div>
+</div>
+
+<div class="example">
+<b>Example 4: Transpose</b>
+
+Rows ko columns bana do.
+
+<div class="formula">
+A=[1 2 3
+   4 5 6]
+
+Aᵀ=[1 4
+    2 5
+    3 6]
+</div>
+</div>
+
+</div>
+
+
+<!-- DETERMINANT -->
+
+<div class="topic">
+
+<h3>2. Determinants</h3>
+
+<div class="definition">
+Determinant ek square matrix se calculate hone wali single numerical value hai.
+2×2 matrix ke liye:
+</div>
+
+<div class="formula">
+A = [a b
+     c d]
+
+det(A) = ad - bc
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+<div class="formula">
+A=[2 3
+   4 5]
+
+det(A)
+=(2×5)-(3×4)
+=10-12
+=-2
+</div>
+
+<div class="result">Determinant = -2</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+<div class="formula">
+A=[1 2
+   3 4]
+
+det(A)
+=(1×4)-(2×3)
+=4-6
+=-2
+</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+<div class="formula">
+A=[5 0
+   2 3]
+
+det(A)
+=(5×3)-(0×2)
+=15
+</div>
+
+<div class="result">Determinant = 15</div>
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+<div class="formula">
+A=[1 2
+   2 4]
+
+det(A)
+=(1×4)-(2×2)
+=4-4
+=0
+</div>
+
+Agar determinant 0 hai, matrix singular hoti hai.
+</div>
+
+</div>
+
+
+<!-- INVERSE -->
+
+<div class="topic">
+
+<h3>3. Inverse of Matrix</h3>
+
+<div class="definition">
+Matrix A ka inverse A⁻¹ hota hai jab:
+</div>
+
+<div class="formula">
+A × A⁻¹ = I
+</div>
+
+2×2 matrix ke liye:
+
+<div class="formula">
+A=[a b
+   c d]
+
+A⁻¹ =
+1/(ad-bc)
+[d -b
+ -c a]
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+<div class="formula">
+A=[2 1
+   1 1]
+</div>
+
+Step 1:
+
+<div class="formula">
+det(A)
+=(2×1)-(1×1)
+=1
+</div>
+
+Step 2: Diagonal elements interchange:
+
+<div class="formula">
+[2 1
+ 1 1]
+→
+[1 -1
+ -1 2]
+</div>
+
+Step 3: Divide by determinant 1:
+
+<div class="result">
+A⁻¹=[1 -1
+     -1 2]
+</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+Agar det(A)=0 ho:
+
+<div class="formula">
+1/det(A)
+=1/0
+</div>
+
+Possible nahi.
+
+<div class="result">
+Inverse exist nahi karta.
+</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+<div class="formula">
+A=[1 2
+   3 5]
+
+det=1×5-2×3
+=5-6
+=-1
+</div>
+
+Determinant non-zero hai, isliye inverse exist karta hai.
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+<div class="formula">
+A=[3 0
+   0 2]
+
+det=6
+
+A⁻¹=[1/3 0
+     0 1/2]
+</div>
+</div>
+
+</div>
+
+
+<!-- SIMULTANEOUS -->
+
+<div class="topic">
+
+<h3>4. Solution of Simultaneous Linear Equations</h3>
+
+<div class="definition">
+Do ya zyada equations me common variables ki values find karna simultaneous equations solve karna hai.
+</div>
+
+<div class="example">
+
+<b>Example 1:</b>
+
+Solve:
+
+<div class="formula">
+x + y = 5
+x - y = 1
+</div>
+
+Dono equations add karo:
+
+<div class="formula">
+(x+y)+(x-y)=5+1
+
+2x=6
+
+x=3
+</div>
+
+Ab x=3 ko first equation me put karo:
+
+<div class="formula">
+3+y=5
+
+y=2
+</div>
+
+<div class="result">
+Answer: x=3, y=2
+</div>
+
+</div>
+
+<div class="example">
+
+<b>Example 2:</b>
+
+<div class="formula">
+2x+y=7
+x+y=5
+</div>
+
+Second equation subtract:
+
+<div class="formula">
+(2x+y)-(x+y)=7-5
+
+x=2
+</div>
+
+Ab:
+
+<div class="formula">
+2+y=5
+y=3
+</div>
+
+<div class="result">x=2, y=3</div>
+
+</div>
+
+<div class="example">
+
+<b>Example 3: Matrix method</b>
+
+<div class="formula">
+x+y=5
+x-y=1
+</div>
+
+Matrix form:
+
+<div class="formula">
+AX=B
+</div>
+
+<div class="formula">
+[1  1] [x] = [5]
+[1 -1] [y]   [1]
+</div>
+
+Then:
+
+<div class="formula">
+X=A⁻¹B
+</div>
+
+Calculation ke baad:
+
+<div class="result">
+x=3, y=2
+</div>
+
+</div>
+
+<div class="example">
+
+<b>Example 4:</b>
+
+<div class="formula">
+3x+y=10
+x+y=6
+</div>
+
+Subtract:
+
+<div class="formula">
+2x=4
+x=2
+</div>
+
+Put x=2:
+
+<div class="formula">
+2+y=6
+y=4
+</div>
+
+<div class="result">
+x=2, y=4
+</div>
+
+</div>
+
+</div>
+
+
+<!-- APPLICATION -->
+
+<div class="topic">
+
+<h3>5. Applications of Linear Algebra in Computing</h3>
+
+<div class="definition">
+Linear algebra ka use computer graphics, image processing, machine learning,
+3D transformations, computer vision aur data science me hota hai.
+</div>
+
+<div class="example">
+<b>Example 1: Image</b>
+
+Image ko pixels ki matrix ke form me represent kiya ja sakta hai.
+
+<div class="formula">
+[255  0
+ 128 64]
+</div>
+
+Har value pixel intensity represent kar sakti hai.
+</div>
+
+<div class="example">
+<b>Example 2: 3D Graphics</b>
+
+Objects ko transform karne ke liye matrices use hoti hain.
+</div>
+
+<div class="example">
+<b>Example 3: Machine Learning</b>
+
+Data ko feature vectors/matrices me store karke mathematical operations kiye ja sakte hain.
+</div>
+
+<div class="example">
+<b>Example 4: Equations</b>
+
+Multiple variables wali equations ko matrix form:
+<div class="formula">
+AX=B
+</div>
+me represent karke solve kiya ja sakta hai.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                     UNIT 3
+===================================================== -->
+
+<section class="unit" id="unit3">
+
+<h2 class="unit-title">
+UNIT 3 — Probability Theory
+</h2>
+
+
+<!-- BASIC -->
+
+<div class="topic">
+
+<h3>1. Basic Concepts of Probability</h3>
+
+<div class="definition">
+Probability kisi event ke hone ki possibility ko measure karti hai.
+Probability ki value 0 se 1 ke beech hoti hai.
+</div>
+
+<div class="formula">
+P(E)=
+Favourable Outcomes
+-------------------
+Total Outcomes
+</div>
+
+<div class="example">
+<b>Example 1: Coin</b>
+
+Coin ke 2 outcomes:
+
+<div class="formula">
+{Head, Tail}
+</div>
+
+Head favourable = 1<br>
+Total = 2
+
+<div class="formula">
+P(Head)=1/2
+</div>
+
+<div class="result">Probability = 0.5</div>
+</div>
+
+<div class="example">
+<b>Example 2: Dice me 6</b>
+
+Total outcomes = 6
+
+<div class="formula">
+P(6)=1/6
+</div>
+</div>
+
+<div class="example">
+<b>Example 3: Dice me even number</b>
+
+Even outcomes:
+
+<div class="formula">
+{2,4,6}
+</div>
+
+Favourable = 3<br>
+Total = 6
+
+<div class="formula">
+P(Even)=3/6=1/2
+</div>
+
+<div class="result">Answer = 1/2</div>
+</div>
+
+<div class="example">
+<b>Example 4: Dice me number > 4</b>
+
+Favourable:
+
+<div class="formula">
+{5,6}
+</div>
+
+<div class="formula">
+P(>4)=2/6=1/3
+</div>
+
+</div>
+
+</div>
+
+
+<!-- CONDITIONAL -->
+
+<div class="topic">
+
+<h3>2. Conditional Probability</h3>
+
+<div class="definition">
+Agar hume pata ho ki event B already occur ho chuka hai,
+to event A ki probability ko conditional probability kehte hain.
+</div>
+
+<div class="formula">
+P(A|B)=P(A∩B)/P(B)
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+Ek deck se card nikala.
+Given hai card red hai.
+Probability ki card heart hai?
+
+Red cards = 26<br>
+Hearts = 13
+
+<div class="formula">
+P(Heart | Red)
+=13/26
+=1/2
+</div>
+
+<div class="result">Answer = 1/2</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+Class me 20 students hain.
+10 boys hain.
+Un boys me 4 coding karte hain.
+
+<div class="formula">
+P(Coding | Boy)
+=4/10
+=0.4
+</div>
+
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+<div class="formula">
+P(A∩B)=0.2
+P(B)=0.5
+
+P(A|B)=0.2/0.5
+=0.4
+</div>
+
+<div class="result">Answer = 0.4</div>
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+Agar P(A∩B)=0.3 aur P(B)=0.6:
+
+<div class="formula">
+P(A|B)=0.3/0.6
+=0.5
+</div>
+</div>
+
+</div>
+
+
+<!-- BAYES -->
+
+<div class="topic">
+
+<h3>3. Bayes' Theorem</h3>
+
+<div class="definition">
+Bayes theorem new evidence milne ke baad probability update karne ka method hai.
+AI aur machine learning me ye bahut important hai.
+</div>
+
+<div class="formula">
+P(A|B)
+=
+P(B|A)P(A)
+----------------
+P(B)
+</div>
+
+<div class="example">
+
+<b>Example 1: Medical Test Type Example</b>
+
+Maan lo:
+
+Disease hone ki probability:
+
+<div class="formula">
+P(D)=0.01
+</div>
+
+Disease wale person ka positive test:
+
+<div class="formula">
+P(+|D)=0.90
+</div>
+
+Disease na hone par false positive:
+
+<div class="formula">
+P(+|not D)=0.05
+</div>
+
+P(+):
+
+<div class="formula">
+P(+)
+=
+P(+|D)P(D)
++
+P(+|not D)P(not D)
+
+=0.90×0.01
+ +0.05×0.99
+
+=0.009+0.0495
+
+=0.0585
+</div>
+
+Ab Bayes:
+
+<div class="formula">
+P(D|+)
+=
+0.90×0.01
+--------------
+0.0585
+
+=0.1538 approximately
+</div>
+
+<div class="result">
+Positive test ke baad disease probability ≈ 15.38%
+</div>
+
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+<div class="formula">
+P(A)=0.2
+P(B|A)=0.8
+P(B)=0.4
+
+P(A|B)
+=
+(0.8×0.2)/0.4
+=
+0.16/0.4
+=
+0.4
+</div>
+
+<div class="result">Answer = 0.4</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+<div class="formula">
+P(A)=0.3
+P(B|A)=0.6
+P(B)=0.5
+
+P(A|B)
+=(0.6×0.3)/0.5
+=0.36
+</div>
+
+</div>
+
+<div class="example">
+<b>Example 4: AI Spam Filtering</b>
+
+Email spam hone ka prior probability hai.
+Kuch words "free", "offer" etc. evidence dete hain.
+
+Bayes theorem:
+<br>
+Prior probability + evidence
+→ Updated probability.
+
+Isi concept se probabilistic spam classification ki ja sakti hai.
+</div>
+
+</div>
+
+
+<!-- RANDOM -->
+
+<div class="topic">
+
+<h3>4. Random Variables</h3>
+
+<div class="definition">
+Random variable ek variable hai jo random experiment ke outcome ko numerical value assign karta hai.
+</div>
+
+<div class="example">
+<b>Example 1: Coin Toss</b>
+
+X = number of Heads
+
+<div class="formula">
+Head → X=1
+Tail → X=0
+</div>
+</div>
+
+<div class="example">
+<b>Example 2: Dice</b>
+
+X = dice par aane wala number.
+
+<div class="formula">
+X ∈ {1,2,3,4,5,6}
+</div>
+</div>
+
+<div class="example">
+<b>Example 3: Two coin tosses</b>
+
+<div class="formula">
+HH → X=2
+HT → X=1
+TH → X=1
+TT → X=0
+</div>
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+Agar dice roll ka X=6 hua,
+to random variable ne observed outcome ko number 6 assign kiya.
+</div>
+
+</div>
+
+
+<!-- APPLICATION -->
+
+<div class="topic">
+
+<h3>5. Applications of Probability in Computing and AI</h3>
+
+<div class="example">
+<b>Example 1: Spam Detection</b>
+
+Email spam hai ya nahi — probability se estimate kiya ja sakta hai.
+</div>
+
+<div class="example">
+<b>Example 2: Machine Learning</b>
+
+Model calculate kar sakta hai:
+
+<div class="formula">
+P(Class | Features)
+</div>
+</div>
+
+<div class="example">
+<b>Example 3: Recommendation Systems</b>
+
+System estimate kar sakta hai ki user ko kisi movie/product ko pasand karne ki probability kitni hai.
+</div>
+
+<div class="example">
+<b>Example 4: Risk Prediction</b>
+
+Future event ke hone ki probability estimate karke decision support diya ja sakta hai.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                     UNIT 4
+===================================================== -->
+
+<section class="unit" id="unit4">
+
+<h2 class="unit-title">
+UNIT 4 — Statistics and Data Analytics
+</h2>
+
+
+<!-- CENTRAL TENDENCY -->
+
+<div class="topic">
+
+<h3>1. Measures of Central Tendency</h3>
+
+<div class="definition">
+Central tendency dataset ke "center" ya representative value ko describe karti hai.
+Main measures:
+<b>Mean, Median, Mode</b>.
+</div>
+
+<h4>Mean</h4>
+
+<div class="formula">
+Mean = Sum of all values / Number of values
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+Data:
+2,4,6,8
+
+<div class="formula">
+Mean=(2+4+6+8)/4
+=20/4
+=5
+</div>
+
+<div class="result">Mean = 5</div>
+</div>
+
+<h4>Median</h4>
+
+<div class="example">
+<b>Example 2:</b>
+
+Data:
+2,4,7,9,10
+
+Middle value = 7
+
+<div class="result">Median = 7</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+Data:
+2,4,6,8
+
+Even number of values hain.
+Middle values = 4 and 6
+
+<div class="formula">
+Median=(4+6)/2
+=5
+</div>
+
+<div class="result">Median = 5</div>
+</div>
+
+<h4>Mode</h4>
+
+<div class="example">
+<b>Example 4:</b>
+
+Data:
+2,3,3,4,5,3
+
+3 sabse zyada baar aaya.
+
+<div class="result">Mode = 3</div>
+</div>
+
+</div>
+
+
+<!-- DISPERSION -->
+
+<div class="topic">
+
+<h3>2. Measures of Dispersion</h3>
+
+<div class="definition">
+Dispersion batata hai data values mean ke around kitni spread hain.
+Important measures:
+Range, Variance, Standard Deviation.
+</div>
+
+<h4>Range</h4>
+
+<div class="example">
+<b>Example 1:</b>
+
+Data:
+10,20,30,40
+
+<div class="formula">
+Range=Maximum-Minimum
+=40-10
+=30
+</div>
+
+<div class="result">Range = 30</div>
+</div>
+
+<h4>Variance</h4>
+
+<div class="example">
+<b>Example 2:</b>
+
+Data:
+2,4,6
+
+Mean:
+
+<div class="formula">
+Mean=(2+4+6)/3
+=12/3
+=4
+</div>
+
+Deviations:
+
+<div class="formula">
+2-4=-2
+4-4=0
+6-4=2
+</div>
+
+Squares:
+
+<div class="formula">
+(-2)²=4
+0²=0
+2²=4
+</div>
+
+Variance:
+
+<div class="formula">
+Variance=(4+0+4)/3
+=8/3
+≈2.67
+</div>
+
+<div class="result">Variance ≈ 2.67</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+Data:
+5,5,5
+
+Mean=5
+
+Every deviation = 0.
+
+<div class="formula">
+Variance=0
+</div>
+
+Matlab data me spread nahi hai.
+</div>
+
+<h4>Standard Deviation</h4>
+
+<div class="example">
+<b>Example 4:</b>
+
+Agar variance = 9:
+
+<div class="formula">
+Standard Deviation = √Variance
+=√9
+=3
+</div>
+
+<div class="result">SD = 3</div>
+</div>
+
+</div>
+
+
+<!-- CORRELATION -->
+
+<div class="topic">
+
+<h3>3. Correlation</h3>
+
+<div class="definition">
+Correlation do variables ke beech relationship ki direction aur strength batata hai.
+</div>
+
+<div class="how">
+Positive correlation:
+<br>
+X badhe → Y bhi generally badhe.
+<br><br>
+Negative correlation:
+<br>
+X badhe → Y generally ghate.
+<br><br>
+Near zero:
+<br>
+Strong linear relationship nahi.
+</div>
+
+<div class="example">
+<b>Example 1: Positive</b>
+
+Study hours:
+1,2,3,4
+
+Marks:
+40,50,60,70
+
+Hours badhe → marks badhe.
+
+<div class="result">Positive correlation</div>
+</div>
+
+<div class="example">
+<b>Example 2: Negative</b>
+
+Speed badhne par fixed distance ka travel time generally kam hota hai.
+
+<div class="result">Negative relationship</div>
+</div>
+
+<div class="example">
+<b>Example 3: No clear correlation</b>
+
+Shoe size aur programming score ke beech koi obvious linear relationship zaroori nahi.
+
+<div class="result">Correlation near zero ho sakta hai.</div>
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+Correlation coefficient r ki range:
+
+<div class="formula">
+-1 ≤ r ≤ +1
+</div>
+
+r=+1 → perfect positive<br>
+r=-1 → perfect negative<br>
+r=0 → no linear correlation
+</div>
+
+</div>
+
+
+<!-- REGRESSION -->
+
+<div class="topic">
+
+<h3>4. Regression</h3>
+
+<div class="definition">
+Regression ka use ek variable ke basis par doosre variable ki value predict/estimate karne ke liye hota hai.
+</div>
+
+<div class="formula">
+ŷ = b₀ + b₁x
+</div>
+
+Yahan:
+<br>
+b₀ = intercept
+<br>
+b₁ = slope
+<br>
+x = input
+<br>
+ŷ = predicted output
+
+<div class="example">
+<b>Example 1:</b>
+
+Equation:
+
+<div class="formula">
+ŷ = 10 + 2x
+</div>
+
+x=3:
+
+<div class="formula">
+ŷ=10+2(3)
+=10+6
+=16
+</div>
+
+<div class="result">Predicted y = 16</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+<div class="formula">
+ŷ=5+3x
+</div>
+
+x=4:
+
+<div class="formula">
+ŷ=5+12
+=17
+</div>
+
+<div class="result">y=17</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+<div class="formula">
+ŷ=20-2x
+</div>
+
+x=5:
+
+<div class="formula">
+ŷ=20-10
+=10
+</div>
+
+<div class="result">y=10</div>
+</div>
+
+<div class="example">
+<b>Example 4: Computing</b>
+
+Agar model:
+
+<div class="formula">
+Time = 5 + 0.5(InputSize)
+</div>
+
+InputSize=100:
+
+<div class="formula">
+Time=5+0.5(100)
+=55
+</div>
+
+</div>
+
+</div>
+
+
+<!-- DATA INTERPRETATION -->
+
+<div class="topic">
+
+<h3>5. Data Interpretation</h3>
+
+<div class="definition">
+Data interpretation ka matlab table, graph ya numerical data ko read karke meaningful conclusion nikalna.
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+Sales:
+<br>
+January = 100
+<br>
+February = 150
+
+Increase:
+
+<div class="formula">
+Increase=150-100
+=50
+</div>
+
+Percentage increase:
+
+<div class="formula">
+(50/100)×100
+=50%
+</div>
+
+<div class="result">Sales 50% increase hui.</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+Data:
+10,20,30
+
+Mean:
+
+<div class="formula">
+(10+20+30)/3
+=20
+</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+Agar graph me line upward ja rahi hai,
+to variable generally increase kar raha hai.
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+Agar ek category ka bar sabse bada hai,
+to us category ki value highest hai.
+</div>
+
+</div>
+
+
+<!-- VISUALIZATION -->
+
+<div class="topic">
+
+<h3>6. Data Visualization Concepts</h3>
+
+<div class="definition">
+Data visualization numerical information ko charts/graphs ke form me visually represent karta hai.
+</div>
+
+<div class="example">
+<b>Example 1: Bar Chart</b>
+
+Different categories compare karne ke liye useful.
+
+Example:
+A = 20, B = 40, C = 30.
+</div>
+
+<div class="example">
+<b>Example 2: Line Chart</b>
+
+Time ke saath change show karne ke liye useful.
+
+Example:
+Monday=10, Tuesday=15, Wednesday=20.
+</div>
+
+<div class="example">
+<b>Example 3: Pie Chart</b>
+
+Parts of a whole show karne ke liye useful.
+</div>
+
+<div class="example">
+<b>Example 4: Scatter Plot</b>
+
+Do numerical variables ke relationship ko visually inspect karne ke liye useful.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                     UNIT 5
+===================================================== -->
+
+<section class="unit" id="unit5">
+
+<h2 class="unit-title">
+UNIT 5 — Mathematical Foundations of AI and Data Science
+</h2>
+
+
+<!-- VECTORS -->
+
+<div class="topic">
+
+<h3>1. Vectors and Vector Operations</h3>
+
+<div class="definition">
+Vector ordered numbers ka collection hai jisme magnitude aur direction ko represent kiya ja sakta hai.
+Computing aur AI me vector ko data/features represent karne ke liye bhi use kiya jata hai.
+</div>
+
+<div class="formula">
+A = [a₁,a₂,a₃]
+</div>
+
+<div class="example">
+<b>Example 1: Vector Addition</b>
+
+<div class="formula">
+A=[1,2]
+B=[3,4]
+
+A+B
+=[1+3,2+4]
+=[4,6]
+</div>
+
+<div class="result">Answer = [4,6]</div>
+</div>
+
+<div class="example">
+<b>Example 2: Vector Subtraction</b>
+
+<div class="formula">
+A=[5,7]
+B=[2,3]
+
+A-B
+=[5-2,7-3]
+=[3,4]
+</div>
+
+<div class="result">Answer = [3,4]</div>
+</div>
+
+<div class="example">
+<b>Example 3: Scalar Multiplication</b>
+
+<div class="formula">
+A=[2,3]
+
+3A
+=[6,9]
+</div>
+
+<div class="result">Answer = [6,9]</div>
+</div>
+
+<div class="example">
+<b>Example 4: Dot Product</b>
+
+<div class="formula">
+A=[1,2]
+B=[3,4]
+
+A·B
+=(1×3)+(2×4)
+=3+8
+=11
+</div>
+
+<div class="result">Dot Product = 11</div>
+</div>
+
+</div>
+
+
+<!-- DISTANCE -->
+
+<div class="topic">
+
+<h3>2. Distance Measures</h3>
+
+<div class="definition">
+Distance measures do points/vectors ke beech difference ya distance ko measure karte hain.
+</div>
+
+<h4>Euclidean Distance</h4>
+
+<div class="formula">
+d =
+√[(x₂-x₁)² + (y₂-y₁)²]
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+A=(1,2)
+<br>
+B=(4,6)
+
+<div class="formula">
+d=√[(4-1)²+(6-2)²]
+
+=√[3²+4²]
+
+=√[9+16]
+
+=√25
+
+=5
+</div>
+
+<div class="result">Distance = 5</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+A=(0,0)
+<br>
+B=(3,4)
+
+<div class="formula">
+d=√(3²+4²)
+=√25
+=5
+</div>
+</div>
+
+<h4>Manhattan Distance</h4>
+
+<div class="formula">
+d=|x₂-x₁|+|y₂-y₁|
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+A=(1,2)
+<br>
+B=(4,6)
+
+<div class="formula">
+d=|4-1|+|6-2|
+=3+4
+=7
+</div>
+
+<div class="result">Manhattan Distance = 7</div>
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+A=(2,3)
+<br>
+B=(5,5)
+
+<div class="formula">
+d=|5-2|+|5-3|
+=3+2
+=5
+</div>
+</div>
+
+</div>
+
+
+<!-- DERIVATIVES -->
+
+<div class="topic">
+
+<h3>3. Introduction to Derivatives</h3>
+
+<div class="definition">
+Derivative batata hai ki function ki value input ke change ke saath kitni rapidly change ho rahi hai.
+Simple language me: <b>rate of change</b>.
+</div>
+
+<div class="formula">
+If:
+
+f(x)=x²
+
+then:
+
+f'(x)=2x
+</div>
+
+<div class="example">
+<b>Example 1:</b>
+
+<div class="formula">
+f(x)=x²
+
+f'(x)=2x
+</div>
+
+x=3 par:
+
+<div class="formula">
+f'(3)=2×3
+=6
+</div>
+
+<div class="result">Rate of change = 6</div>
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+<div class="formula">
+f(x)=x³
+
+f'(x)=3x²
+</div>
+
+x=2:
+
+<div class="formula">
+f'(2)=3×2²
+=12
+</div>
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+<div class="formula">
+f(x)=5x
+
+f'(x)=5
+</div>
+
+Yani function ka rate of change constant 5 hai.
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+<div class="formula">
+f(x)=7
+
+f'(x)=0
+</div>
+
+Constant ki value change nahi hoti,
+isliye derivative 0.
+</div>
+
+</div>
+
+
+<!-- OPTIMIZATION -->
+
+<div class="topic">
+
+<h3>4. Basic Optimization Concepts</h3>
+
+<div class="definition">
+Optimization ka objective hota hai kisi function ko maximum ya minimum karna.
+AI/ML me loss function ko minimize karna common objective hai.
+</div>
+
+<div class="how">
+Basic idea:
+
+Start with function
+↓
+Derivative nikalo
+↓
+Derivative = 0 solve karo
+↓
+Candidate point milega
+↓
+Check karo minimum/maximum.
+</div>
+
+<div class="example">
+
+<b>Example 1: Minimum</b>
+
+<div class="formula">
+f(x)=x²
+</div>
+
+Derivative:
+
+<div class="formula">
+f'(x)=2x
+</div>
+
+Minimum ke candidate ke liye:
+
+<div class="formula">
+2x=0
+x=0
+</div>
+
+Function:
+
+<div class="formula">
+f(0)=0
+</div>
+
+<div class="result">
+Minimum point = x=0
+</div>
+
+</div>
+
+<div class="example">
+
+<b>Example 2:</b>
+
+<div class="formula">
+f(x)=x²+4x+3
+</div>
+
+Derivative:
+
+<div class="formula">
+f'(x)=2x+4
+</div>
+
+Set zero:
+
+<div class="formula">
+2x+4=0
+2x=-4
+x=-2
+</div>
+
+Function value:
+
+<div class="formula">
+f(-2)
+=(-2)²+4(-2)+3
+=4-8+3
+=-1
+</div>
+
+<div class="result">
+Minimum value = -1
+</div>
+
+</div>
+
+<div class="example">
+
+<b>Example 3: Simple AI idea</b>
+
+Suppose loss:
+
+<div class="formula">
+L(w)=w²
+</div>
+
+Derivative:
+
+<div class="formula">
+dL/dw=2w
+</div>
+
+Agar w=5:
+
+<div class="formula">
+dL/dw=10
+</div>
+
+Gradient positive hai,
+so optimization algorithm w ko lower direction me move kar sakta hai.
+</div>
+
+<div class="example">
+
+<b>Example 4: Gradient Descent</b>
+
+Basic update:
+
+<div class="formula">
+w(new)=w(old)-η × gradient
+</div>
+
+Suppose:
+
+<div class="formula">
+w=5
+gradient=10
+η=0.1
+</div>
+
+Then:
+
+<div class="formula">
+w(new)
+=5-(0.1×10)
+=5-1
+=4
+</div>
+
+<div class="result">
+New w = 4
+</div>
+
+Yani algorithm loss ko reduce karne ki direction me parameter update karta hai.
+</div>
+
+</div>
+
+
+<!-- AI -->
+
+<div class="topic">
+
+<h3>5. Applications in Artificial Intelligence</h3>
+
+<div class="definition">
+AI systems me mathematics data ko represent karne, predictions calculate karne,
+distance find karne aur models ko optimize karne ke kaam aati hai.
+</div>
+
+<div class="example">
+<b>Example 1: Feature Vector</b>
+
+Ek student ke features:
+
+<div class="formula">
+X=[8,7,9]
+</div>
+
+Yahan:
+8 = study hours related feature<br>
+7 = attendance related feature<br>
+9 = previous score related feature
+</div>
+
+<div class="example">
+<b>Example 2: Classification</b>
+
+AI model calculate karta hai ki input kis class se related hai.
+Probability use karke:
+
+<div class="formula">
+P(Class A | Features)
+</div>
+
+estimate ki ja sakti hai.
+</div>
+
+<div class="example">
+<b>Example 3: Clustering</b>
+
+Agar do data points:
+
+<div class="formula">
+A=(1,2)
+B=(4,6)
+</div>
+
+Distance = 5.
+
+Agar distance small hai,
+to clustering algorithm unhe same group me rakhne consider kar sakta hai.
+</div>
+
+<div class="example">
+<b>Example 4: Model Training</b>
+
+Model ka loss high hai.
+Optimization algorithm parameters ko update karta hai:
+
+<div class="formula">
+New Parameter
+=
+Old Parameter
+-
+Learning Rate × Gradient
+</div>
+
+Repeated updates se model better solution ki taraf move karta hai.
+</div>
+
+</div>
+
+
+<!-- ML -->
+
+<div class="topic">
+
+<h3>6. Applications in Machine Learning</h3>
+
+<div class="example">
+<b>Example 1: Linear Regression</b>
+
+<div class="formula">
+ŷ=b₀+b₁x
+</div>
+
+Input x ke basis par prediction y nikali jaati hai.
+</div>
+
+<div class="example">
+<b>Example 2: Classification</b>
+
+Features ko vector:
+
+<div class="formula">
+X=[x₁,x₂,x₃]
+</div>
+
+ke form me represent karke model prediction karta hai.
+</div>
+
+<div class="example">
+<b>Example 3: K-Nearest Neighbors</b>
+
+New point se existing points ki distance calculate hoti hai.
+Closest points ke basis par class decide ki ja sakti hai.
+</div>
+
+<div class="example">
+<b>Example 4: Gradient Descent</b>
+
+Loss function ka gradient calculate karke parameters update kiye jaate hain.
+
+<div class="formula">
+w ← w - η∇L
+</div>
+</div>
+
+</div>
+
+
+<!-- DATA SCIENCE -->
+
+<div class="topic">
+
+<h3>7. Applications in Data Science</h3>
+
+<div class="example">
+<b>Example 1:</b>
+
+Dataset ka mean calculate karke typical value samajhi ja sakti hai.
+</div>
+
+<div class="example">
+<b>Example 2:</b>
+
+Variance se pata chalta hai ki values mean se kitni spread hain.
+</div>
+
+<div class="example">
+<b>Example 3:</b>
+
+Correlation se do variables ke linear relationship ko measure kiya ja sakta hai.
+</div>
+
+<div class="example">
+<b>Example 4:</b>
+
+Regression model historical data ke basis par future value estimate kar sakta hai.
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                  3D CONCEPT FLOW
+===================================================== -->
+
+<section class="unit">
+
+<h2 class="unit-title">
+3D Concept Flow — Mathematics → Computing → AI
+</h2>
+
+<div class="diagram">
+
+<div class="box">
+Sets
+</div>
+
+<span class="arrow">→</span>
+
+<div class="box">
+Functions
+</div>
+
+<span class="arrow">→</span>
+
+<div class="box">
+Matrices
+</div>
+
+<span class="arrow">→</span>
+
+<div class="box">
+Vectors
+</div>
+
+<span class="arrow">→</span>
+
+<div class="box">
+Probability
+</div>
+
+<span class="arrow">→</span>
+
+<div class="box">
+Statistics
+</div>
+
+<span class="arrow">→</span>
+
+<div class="box">
+Machine Learning
+</div>
+
+<span class="arrow">→</span>
+
+<div class="box">
+AI
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
+                     FINAL REVISION
+===================================================== -->
+
+<section class="unit">
+
+<h2 class="unit-title">
+⚡ Complete Quick Revision
+</h2>
+
+<div class="revision">
+
+<ul>
+
+<li>
+<b>Set:</b> Well-defined collection of objects.
+</li>
+
+<li>
+<b>Union:</b> A ∪ B → dono sets ke elements.
+</li>
+
+<li>
+<b>Intersection:</b> A ∩ B → common elements.
+</li>
+
+<li>
+<b>Function:</b> Input ko exactly one output se map karta hai.
+</li>
+
+<li>
+<b>Mathematical Modelling:</b> Real problem → mathematical model.
+</li>
+
+<li>
+<b>Arithmetic Sequence:</b> Consecutive terms ka difference constant.
+</li>
+
+<li>
+<b>Matrix:</b> Rows aur columns me numbers ka arrangement.
+</li>
+
+<li>
+<b>Determinant:</b> Square matrix se obtained scalar value.
+</li>
+
+<li>
+<b>Inverse:</b> A × A⁻¹ = I.
+</li>
+
+<li>
+<b>Probability:</b> Event ke hone ki possibility.
+</li>
+
+<li>
+<b>Conditional Probability:</b> Given condition ke under probability.
+</li>
+
+<li>
+<b>Bayes:</b> Evidence milne ke baad probability update.
+</li>
+
+<li>
+<b>Random Variable:</b> Random outcome ko numerical value assign karta hai.
+</li>
+
+<li>
+<b>Mean:</b> Sum / Number of values.
+</li>
+
+<li>
+<b>Median:</b> Ordered data ka middle value.
+</li>
+
+<li>
+<b>Mode:</b> Most frequently occurring value.
+</li>
+
+<li>
+<b>Range:</b> Maximum − Minimum.
+</li>
+
+<li>
+<b>Variance:</b> Mean ke around squared spread.
+</li>
+
+<li>
+<b>Correlation:</b> Two variables ke relationship ki direction/strength.
+</li>
+
+<li>
+<b>Regression:</b> Prediction/estimation ke liye fitted relationship.
+</li>
+
+<li>
+<b>Vector:</b> Ordered numerical quantities ka collection.
+</li>
+
+<li>
+<b>Euclidean Distance:</b> Straight-line distance.
+</li>
+
+<li>
+<b>Manhattan Distance:</b> Absolute coordinate differences ka sum.
+</li>
+
+<li>
+<b>Derivative:</b> Rate of change.
+</li>
+
+<li>
+<b>Optimization:</b> Maximum/minimum solution find karna.
+</li>
+
+<li>
+<b>Gradient Descent:</b> Parameters ko loss reduce karne ki direction me update karta hai.
+</li>
+
+<li>
+<b>AI:</b> Mathematics ka use data, probability, vectors aur optimization ke through intelligent models banane me karta hai.
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+<footer>
+
+<h2>▀▄▀▄ Durgesh ▄▀▄▀</h2>
+
+<p>
+Mathematical Foundations for Computing
+</p>
+
+<p>
+Unit 1 • Unit 2 • Unit 3 • Unit 4 • Unit 5
+</p>
+
+<p>
+Learn → Understand → Solve → Apply
+</p>
+
+</footer>
+
+</div>
+
+</body>
+</html>
+```
